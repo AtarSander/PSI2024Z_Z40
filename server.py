@@ -2,7 +2,7 @@ import socket
 import sys
 
 HOST = "127.0.0.1"
-START_BUF_SIZE = 3
+START_BUF_SIZE = 5
 # port = int(sys.argv[1])
 port = 8000
 
@@ -22,5 +22,5 @@ if __name__ == "__main__":
                 break
             # echo back data
             s.sendto(data, address)
-            print("sending dgram #", bufsize - 2)
+            print("sending dgram #", bufsize - 4)
             bufsize += 1
