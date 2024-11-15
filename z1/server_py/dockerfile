@@ -1,0 +1,7 @@
+FROM python:3
+ADD server_py/server.py .
+ADD utils.py .
+
+EXPOSE 8000/udp
+
+ENTRYPOINT [ "python", "server.py", "8000" ]

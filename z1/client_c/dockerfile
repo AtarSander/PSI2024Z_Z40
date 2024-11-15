@@ -1,0 +1,6 @@
+FROM gcc:4.9
+ADD client.c /Client
+ADD ../utils.c /Client
+WORKDIR /Client/
+RUN gcc client.c utils.c -o client
+CMD ["./client"]
