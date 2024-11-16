@@ -1,14 +1,20 @@
 #include <stdint.h>
 #include <stdio.h>
 
+// converts a 16-bit unsigned integer into two bytes and stores them at specified positions in the array
 void uint16_to_char(unsigned char *data, uint16_t value, int pos1, int pos2)
 {
    data[pos1] = (value >> 8) & 0xFF;
-   printf("Data[pos1]= %#x\n", data[pos1]);
    data[pos2] = value & 0xFF;
-   printf("Data[pos2]= %#x\n", data[pos2]);
 }
 
+// converts two bytes into a 16-bit unsigned integer
+uint16_t char_to_uint16(unsigned char byte1, unsigned char byte2)
+{
+   return (byte1 << 8) | byte2;
+}
+
+// computes the Fletcher-16 checksum for a given data array of a specified length
 uint16_t Fletcher16(unsigned char *data, int length)
 {
    uint16_t sum1 = 0;
@@ -23,20 +29,16 @@ uint16_t Fletcher16(unsigned char *data, int length)
    return (sum2 << 8) | sum1;
 }
 
-void generate_msg(unsigned char *msg, int length)
+// adds next alphabet letter to a given msg based on the previous letter
+void generate_msg(unsigned char *msg, int index)
 {
-   if (length == 0)
+   if (index == 0)
       msg[0] = 'A';
    else
    {
-      char letter = msg[length - 1] + 1;
+      char letter = msg[index - 1] + 1;
       if (letter > 'Z')
          letter = 'A';
-      msg[length] = letter;
+      msg[index] = letter;
    }
-}
-
-uint16_t char_to_uint16(unsigned char byte1, unsigned char byte2)
-{
-   return (byte1 << 8) | byte2;
 }
