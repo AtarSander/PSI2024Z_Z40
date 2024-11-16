@@ -5,4 +5,4 @@ ADD utils.c /Client
 ADD utils.h /Client
 WORKDIR /Client
 RUN gcc client.c utils.c -o client
-CMD ["./client", "cserver1", "8000"]
+CMD ["./client", "z40_server_c_container", "8000"]

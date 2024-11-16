@@ -24,7 +24,9 @@ run_c() {
 
 # Function to clean up containers
 clean() {
-    docker rm -f z40_server_py z40_client_py z40_server_c z40_client_c || true
+    docker kill z40_server_py_container z40_client_py_container z40_server_c_container z40_client_c_container || true
+    docker rm -f z40_server_py_container z40_client_py_container z40_server_c_container z40_client_c_container
+    docker rmi z40_server_py z40_client_py z40_server_c z40_client_c || true
 }
 
 # Main script logic to execute based on input arguments
