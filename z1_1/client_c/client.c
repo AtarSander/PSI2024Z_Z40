@@ -80,10 +80,10 @@ int main(int argc, char *argv[])
         response_checksum = char_to_uint16(buf[2], buf[3]);
         // validate the response
         if (response_length == length + 5 && response_checksum == checksum)
-            printf("Response# %u correct\n", length + 1);
+            printf("Response# %u correct\n", length + 5);
         else
         {
-            printf("Response# %u incorrect\n", length + 1);
+            printf("Response# %u incorrect\n", length + 5);
             exit(5);
         }
     }
