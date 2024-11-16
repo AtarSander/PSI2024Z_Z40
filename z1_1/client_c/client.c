@@ -61,7 +61,7 @@ int main(int argc, char *argv[])
         memcpy(datagram + 4, msg, length + 2);
 
         // log created data headers
-        printf("Data length: %u\n", length + 1);
+        printf("Datagram length: %u\n", length + 5);
         printf("Checksum: %u\n", checksum);
 
         // send the datagram to the server
@@ -80,10 +80,10 @@ int main(int argc, char *argv[])
         response_checksum = char_to_uint16(buf[2], buf[3]);
         // validate the response
         if (response_checksum == checksum)
-            printf("Response# %u correct\n", length + 5);
+            printf("Response#%u correct\n", length + 1);
         else
         {
-            printf("Response# %u incorrect\n", length + 5);
+            printf("Response#%u incorrect\n", length + 1);
             exit(5);
         }
     }
