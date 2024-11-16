@@ -28,7 +28,7 @@ int main(int argc, char *argv[])
 
     if (sock == -1)
     {
-        perror("opening datagram socket");
+        perror("Error opening datagram socket");
         exit(2);
     }
     // resolve the hostname to an IP address
@@ -72,14 +72,14 @@ int main(int argc, char *argv[])
         // read the server's response into the buffer
         if (read(sock, buf, 5) == -1)
         {
-            perror("receiving datagram packet");
+            perror("Error receiving datagram packet");
             exit(4);
         }
         // extract response length and checksum
         response_length = char_to_uint16(buf[0], buf[1]);
         response_checksum = char_to_uint16(buf[2], buf[3]);
         // validate the response
-        if (response_length == length + 5 && response_checksum == checksum)
+        if (response_checksum == checksum)
             printf("Response# %u correct\n", length + 5);
         else
         {

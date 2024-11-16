@@ -21,12 +21,12 @@ run_py_server() {
 }
 
 run_py_client() {
-    docker run -dit --network z40_network --network-alias z40_client_py_container --name z40_client_py_container z40_client_py:latest
+    docker run -dit --network z40_network --network-alias z40_client_py_container --name z40_client_py_container z40_client_py:latest $1 $2
 }
 
 run_py() {
     run_py_server
-    run_py_client
+    run_py_client "z40_server_py_container" 8000
 }
 
 # building and running C containers
@@ -48,13 +48,13 @@ run_c_server() {
 }
 
 run_c_client() {
-    docker run -dit --network z40_network --network-alias z40_client_c_container --name z40_client_c_container z40_client_c:latest
+    docker run -dit --network z40_network --network-alias z40_client_c_container --name z40_client_c_container z40_client_c:latest $1 $2
 }
 
 
 run_c() {
     run_c_server
-    run_c_client
+    run_c_client "z40_server_c_container" 8000
 }
 
 # clean up containers and images
@@ -81,14 +81,14 @@ case "$1" in
         build_py_server
         build_c_client
         run_py_server
-        run_c_client
+        run_c_client "z40_server_py_container"  8000
         ;;
     server-c-client-py)
         clean
         build_c_server
         build_py_client
         run_c_server
-        run_py_client
+        run_py_client "z40_server_c_container" 8000
         ;;
     build-py)
         build_py
@@ -106,7 +106,7 @@ case "$1" in
         clean
         ;;
     *)
-        echo "Usage: $0 {py|c|build-py|run-py|build-c|run-c|clean}"
+        echo "Usage: $0 {py|c|server-py-client-c|server-c-client-py|build-py|run-py|build-c|run-c|clean}"
         exit 1
         ;;
 esac

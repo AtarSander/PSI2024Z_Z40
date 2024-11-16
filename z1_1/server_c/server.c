@@ -72,6 +72,7 @@ void main(int argc, char *argv[])
         // printf("Received data: %s", data);
 
         // prepare the response datagram header
+        uint16_to_char(buf, 4, 0, 1);
         uint16_to_char(buf, calculated_checksum, 2, 3);
 
         // sending response back to the client

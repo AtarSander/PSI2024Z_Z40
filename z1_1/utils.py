@@ -28,3 +28,12 @@ def seperate_data(data):
     msg = data[4:].decode("ascii")
 
     return msg_len, checksum, msg
+
+
+def data_to_binarystream(binary_stream, len_bin, checksum_bytes, message=""):
+    # write the data to binary stream
+    binary_stream.write(len_bin)
+    binary_stream.write(checksum_bytes)
+    binary_stream.write(message.encode("ascii"))
+    binary_stream.seek(0)
+    return binary_stream.read()
