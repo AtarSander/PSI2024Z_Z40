@@ -1,0 +1,4 @@
+FROM python:3
+ADD client_py/client.py .
+ADD utils.py .
+ENTRYPOINT [ "python", "client.py", "z40_server_py_container", "8000" ]
