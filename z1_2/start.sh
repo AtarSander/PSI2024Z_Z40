@@ -2,11 +2,11 @@
 
 # building and running Python containers
 build_py_server() {
-    docker build -t z40_server_py -f server_py/dockerfile .
+    docker build -t z40_server -f server_py/dockerfile .
 }
 
 build_py_client() {
-    docker build -t z40_client_py -f client_py/dockerfile .
+    docker build -t z40_client -f client_py/dockerfile .
 }
 
 build_py() {
@@ -15,16 +15,16 @@ build_py() {
 }
 
 run_py_server() {
-    docker run -dit --network z40_network --network-alias z40_server_py_container --name z40_server_py_container z40_server_py:latest
+    docker run -dit --network z40_network --network-alias z40_server_container --name z40_server_container z40_server:latest
 }
 
 run_py_client() {
     # Use provided parameters if available, otherwise default
-    server_name=${1:-z40_server_py_container}
+    server_name=${1:-z40_server_container}
     server_port=${2:-8000}
     client_param=${3:-1000}
 
-    docker run -dit --network z40_network --network-alias z40_client_py_container --name z40_client_py_container z40_client_py:latest "$server_name" "$server_port" "$client_param"
+    docker run -dit --network z40_network --network-alias z40_client_container --name z40_client_container z40_client:latest "$server_name" "$server_port" "$client_param"
 }
 
 run_py() {
@@ -34,9 +34,9 @@ run_py() {
 
 # clean up containers and images
 clean() {
-    docker kill z40_server_py_container z40_client_py_container || true
-    docker rm -f z40_server_py_container z40_client_py_container || true
-    docker rmi z40_server_py z40_client_py || true
+    docker kill z40_server_container z40_client_container || true
+    docker rm -f z40_server_container z40_client_container || true
+    docker rmi z40_server z40_client || true
 }
 
 run-with-disturbance() {
