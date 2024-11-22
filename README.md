@@ -40,7 +40,7 @@ Dodatkowo, uruchamiając `./start.sh clean` usuwane są wszystkie powstałe obra
 
 ### Sprawozdanie
 
-W folderze znajduje się również sprawozdanie z zadania w formacie pdf: `sprawozdanie_z40_1_1.pdf`.
+W folderze znajduje się również sprawozdanie z zadania w formacie pdf: `z40_sprawozdanie_z1_1.pdf`.
 
 ## Z1_2
 
