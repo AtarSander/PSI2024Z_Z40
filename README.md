@@ -61,7 +61,7 @@ Do uruchamiania zadania przeznaczony jest skrypt `start.sh`.
 ### Uruchamianie
 
 Skrypt `start.sh` ma kilka opcji uruchomienia. Można zobaczyć dostępne opcje poprzez wpisanie nazwy skryptu bez podawania argumentów wywołania.
-Skrypt służy do zbudowania obrazów i uruchomienia kontenerów, które komunikują się za pomocą protokołu UDP. \\
+Skrypt służy do zbudowania obrazów i uruchomienia kontenerów, które komunikują się za pomocą protokołu UDP. \
 Główne opcje:
 
 - py: klient i serwer uruchomione bez zakłóceń.
