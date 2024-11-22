@@ -49,6 +49,7 @@ class Client:
         # send the UDP datagram
         send_time = perf_counter()
         self.send_datagram(stream_data, message)
+        # wait for response, if timeout occurs return -1 signalizing lost packet
         try:
             self.socket.settimeout(self.timeout)
             data = self.socket.recv(self.buf_size)

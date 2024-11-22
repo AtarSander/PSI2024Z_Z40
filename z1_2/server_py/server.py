@@ -35,6 +35,7 @@ class Server:
             return -1
 
         alternating_bit, _, checksum, msg = self.seperate_data(data)
+        # signalize lost packet by changing alternating bit
         if not self.verify_checksum(msg, checksum):
             alternating_bit = self.change_abp(alternating_bit)
         # create data to send back
