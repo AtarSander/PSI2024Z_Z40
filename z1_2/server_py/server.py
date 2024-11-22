@@ -17,8 +17,8 @@ class Server:
     def server_loop(self):
         with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as self.socket:
             # start listening on socket
-            self.socket.bind((self.host, self.port))
             print(f"Server started with hostname {self.host} on port {self.port}")
+            self.socket.bind((self.host, self.port))
             while server.communicate() != -1:
                 pass
 

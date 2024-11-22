@@ -21,7 +21,9 @@ class Client:
         msg = generate_msg(self.buf_size - 5)
         # create socket
         with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as self.socket:
-            print(f"Client started with hostname: {self.host} and port {self.port}")
+            print(
+                f"Client started with servername: {self.host} and server port {self.port}"
+            )
             for i in range(num_of_datagrams):
                 print(f"Sending message #{i}")
                 while self.communicate(msg) == -1:
