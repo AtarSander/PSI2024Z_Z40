@@ -39,6 +39,22 @@ clean() {
     docker rmi z40_server_py z40_client_py || true
 }
 
+run-with-disturbance() {
+    docker compose up --build -d
+
+    echo "Waiting for the client container to be ready..."
+    until docker inspect -f '{{.State.Running}}' z40_client_container 2>/dev/null | grep -q "true"; do
+    sleep 1
+    done
+
+    echo "Client container is running. Applying network settings..."
+
+    docker exec z40_client_container tc qdisc add dev eth0 root netem delay 1000ms 500ms loss 50%
+
+    echo "Network settings applied."
+}
+
+
 # script
 case "$1" in
     py)
@@ -55,8 +71,12 @@ case "$1" in
     clean)
         clean
         ;;
+    disturbance)
+        docker compose down
+        run-with-disturbance
+        ;;
     *)
-        echo "Usage: $0 {py|build-py|run-py|clean} [server_name] [server_port] [client_param]"
+        echo "Usage: $0 {disturbance|py|build-py|run-py|clean} [server_name] [server_port] [client_param]"
         exit 1
         ;;
 esac

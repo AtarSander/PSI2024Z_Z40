@@ -1,0 +1,17 @@
+services:
+  server:
+    container_name: z40_server_container
+    build:
+      context: .
+      dockerfile: server_py/dockerfile
+    tty: true
+    cap_add:
+      - NET_ADMIN
+  client:
+    container_name: z40_client_container
+    build:
+      context: .
+      dockerfile: client_py/dockerfile
+    tty: true
+    cap_add:
+      - NET_ADMIN

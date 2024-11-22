@@ -1,5 +1,7 @@
 FROM python:3
+
+RUN apt-get update && apt-get install -y iproute2 && rm -rf /var/lib/apt/lists/*
 ADD client_py/client.py .
 ADD utils.py .
 ENTRYPOINT [ "python", "client.py" ]
-CMD [ "z40_server_py_container", "8000", "1000" ]
+CMD [ "z40_server_container", "8000", "100000" ]
