@@ -87,14 +87,15 @@ W folderze `python` znajdują się podfoldery `client_py` (plik źródłowy klie
 
 ### Uruchamianie
 
-Skrypt `start.sh` ma kilka opcji uruchomienia. Można zobaczyć dostępne opcje poprzez wpisanie nazwy skryptu bez podawania argumentów wywołania.
-Skrypt służy do zbudowania obrazów i uruchomienia kontenerów, które komunikują się za pomocą protokołu UDP. \
-Główne opcje:
+Uruchamianie za pomocą docker compose.
+Wersja C:
+`docker compose up --build --scale z40_client_c=10` uruchomione w folderze `z2/c`
 
-- py: klient i serwer uruchomione bez zakłóceń.
-- disturbance: klient i serwer uruchomione z zakłóceniami. W tej wersji, na początku następuje czyszczenie za pomocą `docker compose down`. Następnie obrazy są budowane i uruchamiane kontenery. Stan uruchomienia kontenera z40_client_container jest sprawdzany w pętli. W momencie wykrycia działającego kontenera, uruchamiane są zakłócenia.
+Wersja Python:
+`docker compose up --build --scale z40_client_py=10` uruchomione w folderze `z2/python`
 
-Dodatkowo, uruchamiając `./start.sh clean` usuwane są wszystkie powstałe obrazy, a kontenery są zatrzymywane i również usuwane. Skryptu można także użyć do pojedynczych operacji zbudowania/uruchomienia klienta/serwera w wybranej implementacji.
+Zatrzymanie poprzez wciśnięcie Ctrl-c.
+Usunięcie kontenerów oraz obrazów poprzez wykonanie `docker compose down` w odpowiednim folderze.
 
 ### Sprawozdanie
 

@@ -12,7 +12,7 @@ class Server:
     def handle_client(self, conn, addr, buf_size):
 
         # sleep added, because socket.accept was taking more time than handling connection
-        time.sleep(0.5)
+        time.sleep(3)
 
         # for presentation purpose
         thread_name = threading.current_thread().name

@@ -18,7 +18,8 @@ int main(int argc, char *argv[])
     struct hostent *hp;             // host information struct for resolving the hostname
     char *data = malloc(BUF_SIZE);  // allocate buffer for data to be sent
     char buffer[BUF_SIZE];          // buffer for reading responses from the server
-    int bytes_read;
+    int bytes_read = 0;
+    int total_bytes_read = 0;
 
     // check if data allocation was successful
     if (data == NULL) 
@@ -69,7 +70,7 @@ int main(int argc, char *argv[])
 
     // generate the message to send
     generate_msg(data, BUF_SIZE);
-    usleep(300000); 
+    sleep(5); 
     // send the data to the server
     if (write(sock, data, sizeof data) == -1)
     {
@@ -82,8 +83,9 @@ int main(int argc, char *argv[])
     // receive response from the server   
     while ((bytes_read = read(sock, buffer, BUF_SIZE)) > 0) 
     {
-        printf("Received %d bytes from server\n", bytes_read);
+        total_bytes_read += bytes_read;
     }
+    printf("Received %d bytes from server\n", total_bytes_read);
 
     if (bytes_read == -1) 
     {

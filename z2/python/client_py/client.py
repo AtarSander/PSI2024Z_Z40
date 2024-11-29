@@ -22,7 +22,13 @@ class Client:
             # send ascii-encoded message
             self.socket.sendall(msg.encode("ascii"))
             # receive response
-            data = self.socket.recv(self.buf_size)
+            data = b""
+            while len(data) < self.buf_size:
+                chunk = self.socket.recv(self.buf_size)
+                if not chunk:  # No more data
+                    break
+                data += chunk
+            print(f"Received {len(data)}B of data")
             print(f"Client finished")
 
 

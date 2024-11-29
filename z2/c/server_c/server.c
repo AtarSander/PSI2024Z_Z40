@@ -28,6 +28,12 @@ void handle_client(int client_socket)
     if (bytes_read == 0)
         printf("Ending connection\n");
     
+    if (write(client_socket, buffer, sizeof buffer) == -1)
+    {
+        perror("Error sending response");
+        exit(5);
+    }
+    
     close(client_socket);
 }
 
