@@ -61,7 +61,7 @@ Do uruchamiania zadania przeznaczony jest skrypt `start.sh`.
 ### Uruchamianie
 
 Skrypt `start.sh` ma kilka opcji uruchomienia. Można zobaczyć dostępne opcje poprzez wpisanie nazwy skryptu bez podawania argumentów wywołania.
-Skrypt służy do zbudowania obrazów i uruchomienia kontenerów, które komunikują się za pomocą protokołu UDP. \\
+Skrypt służy do zbudowania obrazów i uruchomienia kontenerów, które komunikują się za pomocą protokołu UDP. \
 Główne opcje:
 
 - py: klient i serwer uruchomione bez zakłóceń.
@@ -75,5 +75,28 @@ W folderze znajduje się również sprawozdanie z zadania w formacie pdf: `z40_s
 
 
 ## Z2
+### Struktura
 
-**Work in Progress**
+W tym folderze znajdują się dwa podfoldery:
+
+- `c`
+- `python`
+
+W folderze `c` znajdują się podfoldery `client_c` (plik źródłowy klienta oraz dockerfile) oraz `server_c` (plik źródłowy serwera oraz dockerfile), plik `docker-compose.yml` oraz pliki z funkcjami pomocniczymi `utils.c` i `utils.h`. \
+W folderze `python` znajdują się podfoldery `client_py` (plik źródłowy klienta oraz dockerfile) oraz `server_py` (plik źródłowy serwera oraz dockerfile), plik `docker-compose.yml` oraz plik z funkcjami pomocniczymi `utils.py`.
+
+### Uruchamianie
+
+Skrypt `start.sh` ma kilka opcji uruchomienia. Można zobaczyć dostępne opcje poprzez wpisanie nazwy skryptu bez podawania argumentów wywołania.
+Skrypt służy do zbudowania obrazów i uruchomienia kontenerów, które komunikują się za pomocą protokołu UDP. \
+Główne opcje:
+
+- py: klient i serwer uruchomione bez zakłóceń.
+- disturbance: klient i serwer uruchomione z zakłóceniami. W tej wersji, na początku następuje czyszczenie za pomocą `docker compose down`. Następnie obrazy są budowane i uruchamiane kontenery. Stan uruchomienia kontenera z40_client_container jest sprawdzany w pętli. W momencie wykrycia działającego kontenera, uruchamiane są zakłócenia.
+
+Dodatkowo, uruchamiając `./start.sh clean` usuwane są wszystkie powstałe obrazy, a kontenery są zatrzymywane i również usuwane. Skryptu można także użyć do pojedynczych operacji zbudowania/uruchomienia klienta/serwera w wybranej implementacji.
+
+### Sprawozdanie
+
+W folderze znajduje się również sprawozdanie z zadania w formacie pdf: `z40_sprawozdanie_z2.pdf`.
+

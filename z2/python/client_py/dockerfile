@@ -1,0 +1,7 @@
+FROM python:3
+
+RUN apt-get update
+ADD client_py/client.py .
+ADD utils.py .
+ENTRYPOINT [ "python", "client.py" ]
+CMD [ "z40_server_container", "8000", "1" ]

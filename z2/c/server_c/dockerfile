@@ -1,0 +1,8 @@
+FROM gcc:latest
+RUN mkdir /Server
+ADD server_c/server.c /Server
+ADD utils.c /Server
+ADD utils.h /Server
+WORKDIR /Server
+RUN gcc server.c utils.c -o server
+CMD ["./server", "0.0.0.0", "8000"]

@@ -1,0 +1,21 @@
+services:
+  z40_server:
+    container_name: z40_server_container
+    build:
+      context: .
+      dockerfile: server_py/dockerfile
+    tty: true
+    networks:
+      - z40_network
+
+  z40_client_py:
+    build:
+      context: .
+      dockerfile: client_py/dockerfile
+    tty: true
+    networks:
+      - z40_network
+
+networks:
+  z40_network:
+    external: true
