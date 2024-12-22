@@ -1,0 +1,23 @@
+services:
+  z40_server:
+    container_name: z40_server_container
+    build:
+      context: .
+      dockerfile: server/dockerfile
+    tty: true
+    networks:
+      - z40_network
+    command: ["0.0.0.0", "8000", "${SERVER_BACKLOG}"]
+
+  z40_client:
+    container_name: z40_client_container
+    build:
+      context: .
+      dockerfile: client/dockerfile
+    tty: true
+    networks:
+      - z40_network
+
+networks:
+  z40_network:
+    external: true

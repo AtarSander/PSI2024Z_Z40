@@ -101,3 +101,27 @@ Usunięcie kontenerów oraz obrazów poprzez wykonanie `docker compose down` w o
 
 W folderze znajduje się również sprawozdanie z zadania w formacie pdf: `z40_sprawozdanie_z2.pdf`.
 
+## Projekt
+### Struktura
+
+W tym folderze znajdują się dwa podfoldery:
+
+- `server` - plik źródłowy serwera oraz dockerfile
+- `client` - plik źródłowy klienta oraz dockerfile
+
+W folderze znajdują się dodatkowo: plik `docker-compose.yml`, plik z funkcjami pomocniczymi `utils.py` oraz plik `start.sh` pozwalający na uruchomienie projektu z podaniem liczby jednocześnie obsługiwanych klientów.
+
+### Uruchamianie
+
+Uruchamianie za pomocą docker compose:
+`docker compose up`
+
+Uruchamianie za pomocą skryptu `start.sh` pozwala dodatkowo na podanie liczby jednocześnie obsługiwanych klientów:
+`./start.sh <liczba_klientów>` lub `./start.sh`, żeby uruchomić z domyślną konfiguracją.
+
+Zatrzymanie poprzez wciśnięcie Ctrl-c.
+Usunięcie kontenerów oraz obrazów poprzez wykonanie `docker compose down` w odpowiednim folderze.
+
+<!-- ### Sprawozdanie
+
+W folderze znajduje się również sprawozdanie z zadania w formacie pdf: `z40_sprawozdanie_z2.pdf`. -->

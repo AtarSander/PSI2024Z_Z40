@@ -1,0 +1,5 @@
+FROM python:3
+ADD server/server.py .
+ADD utils.py .
+ENTRYPOINT [ "python", "server.py"]
+CMD ["0.0.0.0", "8000", "5"]

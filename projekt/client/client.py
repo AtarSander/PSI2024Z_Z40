@@ -24,13 +24,16 @@ class Client:
     def client_hello(self):
         secret_key = generate_key()
         self.socket.sendall(str.encode(self.public_key))
-
+        print("sent public key \n")
         server_key = self.socket.recv(self.buf_size).decode("ascii")
+        print("received server_key", server_key)
         common_key = server_key + self.public_key
         common_encoded = encrypt(common_key, secret_key)
         self.socket.sendall(str.encode(common_encoded))
+        print("sent common encoded \n")
 
         encoded_server = self.socket.recv(self.buf_size).decode("ascii")
+        print("received encoded_server", encoded_server)
         self.session_key = encrypt(encoded_server, secret_key)
 
     def send_message(self, message):
