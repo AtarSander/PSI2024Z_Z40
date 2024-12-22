@@ -90,16 +90,12 @@ class Server:
     def server_hello(self, conn):
         secret_key = generate_key()
         client_key = conn.recv(self.buf_size).decode("ascii")
-        print("received client_key", client_key)
         conn.sendall(str.encode(self.public_key))
-        print("sent public key \n")
         common_key = self.public_key + client_key
         common_encoded = encrypt(common_key, secret_key)
         conn.sendall(str.encode(common_encoded))
         time.sleep(0.1)
-        print("sent common encoded\n")
         encoded_client = conn.recv(self.buf_size).decode("ascii")
-        print("received encoded_client", encoded_client)
         with self.lock:
             self.session_keys[conn] = encrypt(encoded_client, secret_key)
 
