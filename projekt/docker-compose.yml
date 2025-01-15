@@ -5,6 +5,7 @@ services:
       context: .
       dockerfile: server/dockerfile
     tty: true
+    stdin_open: true
     networks:
       - z40_network
     command: ["0.0.0.0", "8000", "${SERVER_BACKLOG}"]
@@ -15,9 +16,13 @@ services:
       context: .
       dockerfile: client/dockerfile
     tty: true
+    stdin_open: true
     networks:
       - z40_network
+    depends_on:
+      - z40_server
 
 networks:
   z40_network:
-    external: true
+    driver: bridge
+    # external: true

@@ -73,8 +73,8 @@ Dodatkowo, uruchamiając `./start.sh clean` usuwane są wszystkie powstałe obra
 
 W folderze znajduje się również sprawozdanie z zadania w formacie pdf: `z40_sprawozdanie_z1_2.pdf`.
 
-
 ## Z2
+
 ### Struktura
 
 W tym folderze znajdują się dwa podfoldery:
@@ -102,6 +102,7 @@ Usunięcie kontenerów oraz obrazów poprzez wykonanie `docker compose down` w o
 W folderze znajduje się również sprawozdanie z zadania w formacie pdf: `z40_sprawozdanie_z2.pdf`.
 
 ## Projekt
+
 ### Struktura
 
 W tym folderze znajdują się dwa podfoldery:
@@ -113,15 +114,23 @@ W folderze znajdują się dodatkowo: plik `docker-compose.yml`, plik z funkcjami
 
 ### Uruchamianie
 
-Uruchamianie za pomocą docker compose:
-`docker compose up`
+Aplikację można uruchomić lokalnie za pomocą:
 
-Uruchamianie za pomocą skryptu `start.sh` pozwala dodatkowo na podanie liczby jednocześnie obsługiwanych klientów:
-`./start.sh <liczba_klientów>` lub `./start.sh`, żeby uruchomić z domyślną konfiguracją.
+- `python server.py 0.0.0.0 8000` w folderze `/projekt/server`
+- `python client.py 0.0.0.0 8000` w folderze `/projekt/client`
+
+Aplikację można uruchomić w sieci docker za pomocą:
+
+- W folderze `/projekt`: \
+  `./start.sh <liczba_klientów>` lub `./start.sh`, żeby uruchomić z domyślną konfiguracją.
+- Następnie trzeba podłączyć terminal do kontenera z uruchomionym serwerem: \
+  `docker attach z40_server_container`
+- Oraz podłączyć terminal do kontenera z uruchomionym klientem: \
+  `docker attach z40_client_container`
 
 Zatrzymanie poprzez wciśnięcie Ctrl-c.
-Usunięcie kontenerów oraz obrazów poprzez wykonanie `docker compose down` w odpowiednim folderze.
+Usunięcie kontenerów oraz obrazów poprzez wykonanie `docker compose down` w folderze `/projekt`.
 
-<!-- ### Sprawozdanie
+### Sprawozdanie
 
-W folderze znajduje się również sprawozdanie z zadania w formacie pdf: `z40_sprawozdanie_z2.pdf`. -->
+W folderze `/projekt` znajduje się sprawozdanie wstępne `z40_sprawozdanie_wstępne_projekt.pdf` oraz końcowe `z40_sprawozdanie_końcowe_projekt.pdf`.

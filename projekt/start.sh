@@ -8,4 +8,4 @@ fi
 
 export SERVER_BACKLOG
 
-docker compose up
+docker compose up --build
